@@ -1,0 +1,3 @@
+jdk_download_url: "http://d.kkstudy.cn/"
+jdk_version: "jdk1.8"
+jdk_directory: "/usr/local"
