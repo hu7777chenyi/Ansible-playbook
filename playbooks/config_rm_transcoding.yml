@@ -1,0 +1,7 @@
+- hosts: zhuanma
+  tasks:
+   - name: config scripts for zhuanma
+     lineinfile:
+       dest: /root/scripts/rm_flv.sh
+       regexp: '^ReservedNum='
+       line: 'ReservedNum=25'

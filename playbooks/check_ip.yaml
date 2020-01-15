@@ -1,0 +1,5 @@
+---
+#测试查看当前主机的IP
+- hosts: CentOS7
+  tasks:
+    - debug: var=hostvars[inventory_hostname]['ansible_default_ipv4']['address']

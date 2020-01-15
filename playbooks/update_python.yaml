@@ -1,0 +1,16 @@
+- name: install python27
+  hosts: python-update 
+  gather_facts: false
+  tasks:
+    - name: install package
+      raw: yum install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gcc make -y
+    - name: tar python.tgz
+      raw: cd /usr/local/src && tar -xzvf Python-2.7.9.tgz
+    - name: install Python27
+      raw: cd Python-2.7.9.tgz && ./configure --prefix=/usr/local/Python2.7.9 --enable-shared;make && make install
+    - name: create softlink to python
+      raw: mv /usr/bin/python /usr/bin/pythonbak ;ln -s /usr/local/Python2.7.9/bin/python /usr/bin/python
+    - name: lib reconfigure
+      raw: cd /etc/ld.so.conf.d/ && echo "/usr/local/Python2.7.9/lib" > python2.7.conf;ldconfig;python -V
+    - name: yum env
+      raw: sed -ibak '1d' /usr/bin/yum ; sed -i '1i\#!/usr/bin/python2.4' /usr/bin/yum
