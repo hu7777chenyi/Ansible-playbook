@@ -1,7 +1,0 @@
-nginx_user: www
-nginx_port: 80
-nginx_web_dir: /usr/local/nginx
-nginx_version: 1.16.1
-#pcre_version: 8.33
-#pretended_name: Tengine
-#pretended_version: 1.5.2
