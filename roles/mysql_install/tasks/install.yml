@@ -1,0 +1,44 @@
+- name: Install libaio Package To Redhat Client
+  yum:
+    name=libaio
+    state=present
+  when:
+    - ansible_distribution == "CentOS"
+    - ansible_distribution_major_version == "7"
+
+- name: Uncompresssion Mysql Software To Redhat Client
+  unarchive:
+    src=/tmp/mysql-{{ mysql_version }}.tar.gz
+    dest={{ mysql_dir }}
+    copy=no
+  when:
+    - ansible_distribution == "CentOS"
+
+- name: Create Mysql Link To Redhat Client
+  file:
+    src={{ mysql_dir }}mysql-5.7.26-linux-glibc2.12-x86_64
+    dest={{ mysql_dir }}mysql
+    state=link
+  when:
+    - ansible_distribution == "CentOS"
+
+- name: Install Mysql Script In Redhat Client
+  shell:
+    /bin/bash /tmp/install_mysql.sh
+  when:
+    - ansible_distribution == "CentOS"
+
+- name: Add Boot Start Mysql Service In Redhat Client
+  shell: chkconfig --level 345 mysqld on
+  when:
+    - ansible_distribution == "CentOS"
+#    - ansible_distribution_major_version == "6"
+
+#- name: Add Boot Start Mysql Service In Redhat Client
+#  systemd:
+#    name: mysqld
+#    enabled: yes
+#    masked: no
+#  when:
+#    - ansible_distribution == "CentOS"
+#    - ansible_distribution_major_version == "7"

@@ -1,0 +1,5 @@
+- name: Delete Mysql compression Software In Redhat Client
+  shell:
+    rm -rf /tmp/mysql-{{ mysql_version }}.tar.gz /tmp/install_mysql.sh
+  when:
+    - ansible_distribution == "CentOS"

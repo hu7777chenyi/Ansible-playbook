@@ -1,0 +1,9 @@
+mysql_dir: /usr/local/
+mysql_basedir: /usr/local/mysql/
+mysql_datadir: /usr/local/mysql/data/
+#mysql_basedir: /usr/local/mysql/basedir
+#mysql_datadir: /usr/local/mysql/datadir
+mysql_port: 3306
+mysql_version: 5.7.26
+mysql_user: mysql
+mysql_sock: /usr/local/mysql/mysql.sock

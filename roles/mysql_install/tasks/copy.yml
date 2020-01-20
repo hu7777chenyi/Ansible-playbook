@@ -1,0 +1,47 @@
+- name: Copy Mysql Software To Redhat Client
+  copy:
+    src=mysql-{{ mysql_version }}.tar.gz
+    dest=/tmp/mysql-{{ mysql_version }}.tar.gz
+    owner=root
+    group=root
+  when: 
+    - ansible_distribution == "CentOS"
+
+- name: Create Mysql User In Redhat Client
+  user:
+    name={{ mysql_user }}
+    state=present
+    createhome=no
+    shell=/sbin/nologin
+  when:
+    - ansible_distribution == "CentOS"
+
+#- name: Copy Mysql Start Script To Redhat Client
+#  copy:
+#    src=mysqld
+#    dest=/etc/init.d/mysqld
+#    owner=root
+#    group=root
+#    mode=0755
+#  when:
+#    - ansible_distribution == "CentOS"
+
+- name: Copy Install Mysql Script To Redhat Client
+  template:
+    src=install_mysql.sh
+    dest=/tmp/
+    owner=root
+    group=root
+    mode=0755
+  when:
+    - ansible_distribution == "CentOS"
+
+- name: Copy Mysql Config To Redhat Client
+  template:
+    src=my.j2
+    dest=/tmp/my.cnf
+    owner=root
+    group=root
+    mode=0644
+  when:
+    - ansible_distribution == "CentOS"

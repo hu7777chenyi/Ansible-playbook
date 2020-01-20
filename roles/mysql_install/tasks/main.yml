@@ -1,0 +1,7 @@
+---
+- include: remove.yml
+- include: copy.yml
+- include: install.yml
+#- include: delete.yml
+- include: install-mysql.yml
+- include: install-automysqlbackup.yml

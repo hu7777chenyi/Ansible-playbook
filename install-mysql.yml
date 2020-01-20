@@ -1,0 +1,8 @@
+#
+#install MySQL
+#
+---
+- hosts: test1
+  become: yes
+  roles:
+  - mysql_install

@@ -1,0 +1,4 @@
+- name: Remove Mariadb Package To Redhat Client
+  yum:
+    name=mariadb-libs
+    state=absent
